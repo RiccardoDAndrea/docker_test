@@ -1,22 +1,26 @@
-# app/Dockerfile
+# This sets up the container with Python 3.10 installed.
+FROM python:3.10-slim
 
-FROM python:3.9-slim
+# This copies everything in your current directory to the /app directory in the container.
+COPY . /app
 
+# This sets the /app directory as the working directory for any RUN, CMD, ENTRYPOINT, or COPY instructions that follow.
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    curl \
-    software-properties-common \
-    git \
-    && rm -rf /var/lib/apt/lists/*
+# This runs pip install for all the packages listed in your requirements.txt file.
+RUN pip install -r requirements.txt
 
-RUN git clone https://github.com/RiccardoDAndrea/docker_test.git .
+# This tells Docker to listen on port 80 at runtime. Port 80 is the standard port for HTTP.
+EXPOSE 80
 
-RUN pip3 install -r requirements.txt
+# This command creates a .streamlit directory in the home directory of the container.
 
-EXPOSE 8501
+# This copies your Streamlit configuration file into the .streamlit directory you just created.
 
-HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
+# Similar to the previous step, this copies your Streamlit credentials file into the .streamlit directory.
 
-ENTRYPOINT ["streamlit", "run", "app/app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+# This sets the default command for the container to run the app with Streamlit.
+ENTRYPOINT ["streamlit", "run"]
+
+# This command tells Streamlit to run your app.py script when the container starts.
+CMD ["app.py"]
