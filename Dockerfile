@@ -15,8 +15,8 @@ RUN git clone https://github.com/RiccardoDAndrea/docker_test.git .
 
 RUN pip3 install -r requirements.txt
 
-EXPOSE 8051
+EXPOSE 8501
 
-HEALTHCHECK CMD curl --fail http://localhost:8051/_stcore/health
+HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
 
-ENTRYPOINT ["streamlit", "run", "app.py", "--server.port=8051", "--server.address=0.0.0.0"]
+ENTRYPOINT ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
