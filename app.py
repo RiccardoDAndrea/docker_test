@@ -1,2 +1,2 @@
 import streamlit as st
-st.write("This is a simple Streamlit app.")
+st.write("This is a simple Streamlit app.")# Path: app.py
