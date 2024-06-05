@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN git clone https://github.com/RiccardoDAndrea/docker_test.git .
 
-RUN pip3 install -r app/requirements.txt
+RUN pip3 install -r requirements.txt
 
 EXPOSE 8501
 
