@@ -9,7 +9,9 @@ RUN apt-get update && apt-get install -y \
     curl \
     software-properties-common \
     git \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    || { cat /var/log/apt/term.log; exit 1; }
+
 
 RUN git clone https://github.com/RiccardoDAndrea/docker_test.git .
 
