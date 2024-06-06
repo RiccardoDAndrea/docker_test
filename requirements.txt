@@ -2,3 +2,6 @@ streamlit
 langchain
 openai
 langchain-community
+pypdf
+sentence-transformers
+chromadb
